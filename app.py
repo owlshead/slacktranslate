@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, abort
 from slackwrapper import SlackWrapper
 import json
 
@@ -24,6 +24,13 @@ def slack_events():
         print(f"Challenge: {data['challenge']}", flush=True)
         return data['challenge']
 
+    sl = SlackWrapper()
+
+    #   Somebody is trying to hack us?
+    if data['token'] != sl.slack_verification:
+        abort(404)      # Ain't nobody here but us chickens!
+        return None
+
     if 'event' in data:
         event = data['event']
 
@@ -33,7 +40,6 @@ def slack_events():
             return ''
 
 
-        sl = SlackWrapper()
         sl.handle_event(event)
 
     return ''

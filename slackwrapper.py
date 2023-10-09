@@ -25,6 +25,7 @@ class SlackWrapper:
         self.slack_token = os.getenv('SLACK_TOKEN')
         self.post_english = os.getenv('SLACK_ENG_URL')
         self.post_spanish = os.getenv('SLACK_ESP_URL')
+        self.slack_verification = os.getenv('SLACK_VERIFY')
 
 
     # Lookup a user's name from their id
