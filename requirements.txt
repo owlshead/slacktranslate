@@ -1,0 +1,5 @@
+gunicorn~=20.0.4
+openai~=0.28.1
+urllib3==1.26.17
+flask~=2.2.2
+requests~=2.31.0
